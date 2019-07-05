@@ -148,7 +148,8 @@ class BackUpCommand extends Command
             $start = time();
             print "\n***************************\n";
             print "Starting Backup of " . $site->name . " #" . $temp_count . "/" . sizeof($site_list) . "\n";
-            exec("drush @" . $site->name . " archive-dump --destination=/tmp/dr-backups/" . $site->name . ".tar.gz --overwrite  --tar-options=\"--exclude=sites/default/files/* --exclude=sites/default/files.bak/* --exclude=sites/default/files/private/* \"");
+            exec("drush @" . $site->name . " archive-dump --destination=/tmp/dr-backups/" . $site->name . ".tar.gz --overwrite --tar-options=\"--exclude=sites/default/files/* --exclude=sites/default/files.bak/* --exclude=sites/default/files/private/* \"", $output);
+            print_r($output);
             print "Dump completed.\n";
             mkdir($destination . $site->name);
             print "Retrieving " . $site->name . " dump.\n";
